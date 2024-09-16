@@ -43,9 +43,9 @@ try {
 router.put('/:id',async (req, res) => {
   try{
     const category = await Category.update(req.body, {where:{id:req.params.id}});
-    res.status(201).json(result, {message: 'Category has been updated 😄'});
+    res.status(201).json({message: 'Category has been updated 😄'});
   } catch (err){
-    res.status(500).json(err, {message: 'Uh oh! 😅'});
+    res.status(500).json({message: 'Uh oh! That did not work 😅'});
   }
 });
 
