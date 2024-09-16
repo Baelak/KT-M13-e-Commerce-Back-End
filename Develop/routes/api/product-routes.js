@@ -19,7 +19,7 @@ router.get('/', async (req, res) => {
 
 // get ONE PRODUCT BY ID
 
-router.get('/:id', (req, res) => {
+router.get('/:id', async (req, res) => {
   try{
     const product = await Product.findByPk(req.params.id, {
       include: [Category,
@@ -38,7 +38,7 @@ router.get('/:id', (req, res) => {
 
 // post A NEW PRODUCT
 
-router.post('/', (req, res) => {
+router.post('/', async (req, res) => {
   try {
     const product = await Product.create(req.body);
     if (req.body.tagIds.length) {
@@ -84,7 +84,7 @@ router.delete('/:id', async (req,res) => {
     await Product.destroy({where: {id: req.params.id}});
     res.status(200).json({message: 'Product deleted ☠️'});
   } catch (err){
-    res.status(500)json(err);
+    res.status(500).json(err);
   }
 });
 
