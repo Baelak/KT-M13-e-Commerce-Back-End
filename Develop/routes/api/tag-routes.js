@@ -10,7 +10,7 @@ router.get('/', async (req, res) => {
     });
     res.status(200).json(tags);
   }catch (err) {
-    res.status(500).json({'Uh oh! That did not work 😅', error: err});
+    res.status(500).json({message:'Uh oh! That did not work 😅', error: err});
   }
 });
 
@@ -26,7 +26,7 @@ router.get('/:id', async (req, res) => {
       }
       res.status(200).json(tag);
   } catch (err) {
-    res.status(500).json({'Uh oh! That did not work 😅', error: err});
+    res.status(500).json({message: 'Uh oh! That did not work 😅', error: err});
   }
 });
 
