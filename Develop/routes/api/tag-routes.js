@@ -36,9 +36,9 @@ router.get('/:id', async (req, res) => {
 router.post('/', async (req, res) => {
   try {
     const tag = await Tag.create(req.body);
-    res.status(200).json(tag);
+    res.status(200).json({message: 'Tag has been Created 😄'});
   } catch (err) {
-    res.status(500).json(err);
+    res.status(500).json({message: 'Uh oh! That did not work 😅'});
   }
 });
 
@@ -46,10 +46,10 @@ router.post('/', async (req, res) => {
 
 router.put('/:id',  async (req, res) => {
   try {
-    await tag.update(req.body, {where: {id: req.params.id}});
-    res.status(200).json({message: 'Tag updated 😄'});
+    await Tag.update(req.body, {where: {id: req.params.id}});
+    res.status(200).json({message: 'Tag has been Updated 😄'});
   } catch (err) {
-    res.status(500).json(err);
+    res.status(500).json({message: 'Uh oh! That did not work 😅'});
   }
 });
 
@@ -60,7 +60,7 @@ router.delete('/:id', async (req, res) => {
     await Tag.destroy({where: {id: req.params.id}});
     res.status(200).json({message: 'Tag Deleted ☠️'});
   } catch (err) {
-    res.status(500).json(err);
+    res.status(500).json({message: 'Uh oh! That did not work 😅'});
   }
 });
 
