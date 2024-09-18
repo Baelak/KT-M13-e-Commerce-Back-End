@@ -49,7 +49,7 @@ router.post('/', async (req, res) => {
       if (!updated[0]) {
         return res.status(404).json({ message: 'No tag found with this id 🤭' });
       }
-      res.status(200).json({ message: 'Tag has been updated 😄' });
+      res.status(200).json({ message: 'Tag has been updated 😄', tag });
     } catch (err) {
       res.status(500).json({ message: 'Uh oh! That did not work 😅', error: err });
     }
