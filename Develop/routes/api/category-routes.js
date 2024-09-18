@@ -16,7 +16,7 @@ router.get('/:id', async (req, res) => {
   try {
     const category = await Category.findByPk(req.params.id, { include: [Product] });
     if (!category) {
-      res.status(404).json({ message: 'No Category found with this id 🤭' });
+      res.status(404).json({ message: 'No Category found with this id 🤭'});
       return;
     }
     res.status(200).json(category);
@@ -29,9 +29,9 @@ router.get('/:id', async (req, res) => {
 router.post('/', async (req, res) => {
   try {
     const category = await Category.create(req.body);
-    res.status(201).json({ message: 'Category has been Created 😄' });
+    res.status(201).json({ message: 'Category has been Created 😄', category });
   } catch (err) {
-    res.status(500).json({ message: 'Uh oh! That did not work 😅' });
+    res.status(500).json({ message: 'Uh oh! That did not work 😅', error: err });
   }
 });
 
@@ -39,9 +39,9 @@ router.post('/', async (req, res) => {
 router.put('/:id', async (req, res) => {
   try {
     const category = await Category.update(req.body, { where: { id: req.params.id } });
-    res.status(200).json({ message: 'Category has been Updated 😄' });
+    res.status(200).json({ message: 'Category has been Updated 😄', category });
   } catch (err) {
-    res.status(500).json({ message: 'Uh oh! That did not work 😅' });
+    res.status(500).json({ message: 'Uh oh! That did not work 😅', error: err });
   }
 });
 
