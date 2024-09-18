@@ -84,6 +84,10 @@ router.put('/:id', async (req, res) => {
 // DELETE A PRODUCT
 router.delete('/:id', async (req, res) => {
   try {
+    // Delete associated ProductTag records first
+    await ProductTag.destroy({ where: { product_id: req.params.id } });
+
+    // Now delete the Product
     const deleted = await Product.destroy({ where: { id: req.params.id } });
 
     if (!deleted) {

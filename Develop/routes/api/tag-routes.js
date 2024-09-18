@@ -59,14 +59,20 @@ router.post('/', async (req, res) => {
 
   router.delete('/:id', async (req, res) => {
     try {
+      // Delete associated ProductTag records first
+      await ProductTag.destroy({ where: { tag_id: req.params.id } });
+  
+      // Now delete the Tag
       const deleted = await Tag.destroy({ where: { id: req.params.id } });
+  
       if (!deleted) {
-        return res.status(404).json({ message: 'No tag found with this id 🤭' });
+        return res.status(404).json({ message: 'No Tag found with this id 🤭' });
       }
-      res.status(200).json({ message: 'Tag deleted ☠️' });
+  
+      res.status(200).json({ message: 'Tag Deleted ☠️' });
     } catch (err) {
       res.status(500).json({ message: 'Uh oh! That did not work 😅', error: err });
     }
   });
-  
+    
 module.exports = router;
