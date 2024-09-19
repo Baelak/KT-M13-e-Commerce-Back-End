@@ -75,7 +75,7 @@ router.put('/:id', async (req, res) => {
       ProductTag.bulkCreate(newProductTags),
     ]);
 
-    res.status(200).json({ message: 'Product has been updated 😄', product});
+    res.status(200).json({ message: 'Product has been updated 😄'});
   } catch (err) {
     res.status(400).json({ message: 'Error updating product 🫠', error: err });
   }
